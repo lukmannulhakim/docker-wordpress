@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.5
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
       Description="Lightweight WordPress container with Nginx 1.10 & PHP-FPM 7.1 based on Alpine Linux."
 
@@ -6,18 +6,14 @@ ENV WP_VERSION 4.7.4
 ENV WP_CORE_DIR /usr/src/wordpress
 
 # Install packages from testing repo's
-RUN apk upgrade -U -a && \
-    apk --no-cache add \
+RUN apk update && apk upgrade && apk add \
     nginx supervisor curl bash \
     php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl php7-zlib \
     php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype \
-    php7-mbstring php7-gd
+    php7-mbstring php7-gd && \
+    rm -fr /var/cache/apk/*
 
-# Small fixes
-RUN ln -s /etc/php7 /etc/php && \
-    ln -s /usr/bin/php7 /usr/bin/php && \
-    ln -s /usr/lib/php7 /usr/lib/php && \
-	rm -fr /var/cache/apk/*
+RUN ln -s /usr/bin/php7 /usr/bin/php
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
