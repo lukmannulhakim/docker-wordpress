@@ -27,8 +27,8 @@ COPY config/php/php-fpm.d/fpm-pool.conf /etc/php7/php-fpm.d/zzz-custom.conf
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # wp-content volume
-VOLUME /var/www/wp-content
-WORKDIR /var/www/wp-content
+VOLUME /var/www/content
+WORKDIR /var/www/content
 RUN chown -R nobody.nobody /var/www
 
 RUN mkdir -p /usr/src
