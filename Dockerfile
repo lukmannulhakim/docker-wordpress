@@ -44,13 +44,10 @@ RUN wp core download \
     --version="${WP_VERSION}" \
     --force
 
-# WP config
-COPY wp-config.php ${WP_CORE_DIR}
-RUN chown nobody.nobody /usr/src/wordpress/wp-config.php && chmod 640 /usr/src/wordpress/wp-config.php
-
-# Append WP secrets
-COPY wp-secrets.php ${WP_CORE_DIR}
-RUN chown nobody.nobody /usr/src/wordpress/wp-secrets.php && chmod 640 /usr/src/wordpress/wp-secrets.php
+# WP config & secrets
+COPY config/wordpress/wp-config.php config/wordpress/wp-secrets.php ${WP_CORE_DIR}/
+RUN chown nobody.nobody ${WP_CORE_DIR}/wp-config.php ${WP_CORE_DIR}/wp-secrets.php && \
+    chmod 640 ${WP_CORE_DIR}/wp-config.php ${WP_CORE_DIR}/wp-secrets.php
 
 # Entrypoint to copy wp-content
 COPY entrypoint.sh /entrypoint.sh
