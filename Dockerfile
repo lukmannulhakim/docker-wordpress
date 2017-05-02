@@ -18,10 +18,10 @@ RUN ln -s /usr/bin/php7 /usr/bin/php
 # Configure nginx
 COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Configure PHP-FPM
-COPY config/php/fpm-pool.conf /etc/php7/php-fpm.d/zzz_custom.conf
-COPY config/php/opcache.ini /etc/php7/conf.d/opcache-recommended.ini
-COPY config/php/php.ini /etc/php7/conf.d/zzz_custom.ini
+# Configure PHP
+COPY config/php/php.ini                 /etc/php7/conf.d/zzz-custom.ini
+COPY config/php/conf.d/opcache.ini      /etc/php7/conf.d/opcache-recommended.ini
+COPY config/php/php-fpm.d/fpm-pool.conf /etc/php7/php-fpm.d/zzz-custom.conf
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
