@@ -17,6 +17,8 @@ services:
     volumes:
       - "./data/content:/var/www/content"
       - "./config/wordpress:/var/www/wp-configs"
+      - "./log/nginx:/var/log/nginx"
+      - "./log/php7:/var/log/php7"
     links:
       - db
     ports:
