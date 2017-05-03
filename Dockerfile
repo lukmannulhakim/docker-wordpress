@@ -41,11 +41,15 @@ RUN wp core download \
     --version="${WP_VERSION}" \
     --force
 
+# Volume for WP Core files, in case we want to use our local files.
+VOLUME /var/www/wordpress
+
 # WP config
 COPY config/wordpress/wp-config.php /var/www
 
-# Volume for WP Core files, in case we want to use our local files.
-VOLUME /var/www/wordpress
+# Volume for extra WordPress configs.
+RUN mkdir -p /var/www/wp-configs
+VOLUME /var/www/wp-configs
 
 # Entrypoint to copy wp-content
 COPY entrypoint.sh /entrypoint.sh
