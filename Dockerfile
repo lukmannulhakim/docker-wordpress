@@ -20,7 +20,8 @@ COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 # Configure PHP
 COPY config/php/php.ini                 /etc/php7/conf.d/zzz-custom.ini
 COPY config/php/conf.d/opcache.ini      /etc/php7/conf.d/opcache-recommended.ini
-COPY config/php/php-fpm.d/fpm-pool.conf /etc/php7/php-fpm.d/zzz-custom.conf
+COPY config/php/php-fpm.d/global.conf   /etc/php7/php-fpm.d/zzz-global.conf
+COPY config/php/php-fpm.d/www.conf      /etc/php7/php-fpm.d/zzz-www.conf
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
