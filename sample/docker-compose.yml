@@ -1,7 +1,7 @@
 version: '2'
 services:
   db:
-    image: mariadb:10.1
+    image: kucrut/mariadb
     volumes:
       - "./data/db:/var/lib/mysql"
     environment:
