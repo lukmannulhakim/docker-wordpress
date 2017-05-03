@@ -14,7 +14,8 @@ RUN apk update && apk upgrade && apk add \
     rm -fr /var/cache/apk/*
 
 # Configure nginx
-COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx/nginx.conf          /etc/nginx/nginx.conf
+COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 # Configure PHP
 COPY config/php/php.ini                 /etc/php7/conf.d/zzz-custom.ini
