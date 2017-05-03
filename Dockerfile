@@ -30,8 +30,6 @@ VOLUME /var/www/content
 WORKDIR /var/www/content
 RUN chown -R nobody.nobody /var/www
 
-RUN mkdir -p /usr/src
-
 # Install wp-cli
 RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar \
     && chmod +x /usr/local/bin/wp
@@ -39,15 +37,15 @@ RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/build
 # Download WordPress
 RUN wp core download \
     --allow-root \
-    --path=/usr/src/wordpress \
+    --path=/var/www/wordpress \
     --version="${WP_VERSION}" \
     --force
 
 # WP config
-COPY config/wordpress/wp-config.php /usr/src
+COPY config/wordpress/wp-config.php /var/www
 
 # Volume for WP Core files, in case we want to use our local files.
-VOLUME /usr/src/wordpress
+VOLUME /var/www/wordpress
 
 # Entrypoint to copy wp-content
 COPY entrypoint.sh /entrypoint.sh
