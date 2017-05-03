@@ -51,6 +51,9 @@ COPY config/wordpress/wp-config.php /var/www
 RUN mkdir -p /var/www/wp-configs
 VOLUME /var/www/wp-configs
 
+# Volumes for logs
+VOLUME /var/log/nginx
+
 # Entrypoint to copy wp-content
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
