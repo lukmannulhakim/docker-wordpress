@@ -5,7 +5,7 @@ WordPress container with Nginx 1.10 & PHP-FPM 7.1 on Alpine Linux.
 _WordPress version currently installed:_ **4.7.4**
 
 ## Usage
-See docker-compose.yml how to use it in your own environment.
+See [sample/docker-compose.yml](docker-compose.yml) how to use it in your own environment.
 ```
 docker-compose up
 ```
