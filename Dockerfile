@@ -1,6 +1,6 @@
 FROM alpine:3.5
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
-      Description="Lightweight WordPress container with Nginx 1.10 & PHP-FPM 7.1 based on Alpine Linux."
+      Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux."
 
 ENV WP_VERSION 4.7.4
 
