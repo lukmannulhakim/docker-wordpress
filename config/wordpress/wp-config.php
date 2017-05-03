@@ -28,12 +28,18 @@ $env_keys = [
 	'DB_NAME',
 	'DB_USER',
 	'DB_PASSWORD',
+	// Misc.
+	'FS_METHOD',
 ];
 
 foreach ( $env_keys as $key ) {
 	if ( isset( $_ENV[ $key ] ) && ! defined( $key ) ) {
 		define( $key, $_ENV[ $key ] );
 	}
+}
+
+if ( ! defined( 'FS_METHOD' ) ) {
+	define( 'FS_METHOD', 'direct' );
 }
 
 if ( ! defined( 'ABSPATH' ) ) {
