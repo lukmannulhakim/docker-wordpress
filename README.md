@@ -19,17 +19,15 @@ docker run -d \
     -e MYSQL_USER=wordpress \
     -e MYSQL_PASSWORD=wordpress \
     mariadb:10.1
-docker run -d \
+docker run \
     --name=wordpress \
     --link wordpress_db:mysql \
     -p 80:80 \
-    -e PUID=1000 \
-    -e PGID=000 \
     -e DB_HOST=wordpress_db \
     -e DB_NAME=wordpress \
     -e DB_USER=wordpress \
     -e DB_PASSWORD=wordpress \
-    -v /some/local/path:/var/www/wp-content \
+    -v /some/local/path:/var/www/content \
     kucrut/wordpress
 ```
 

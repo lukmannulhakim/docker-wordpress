@@ -4,7 +4,9 @@
 set -e
 
 cat << "EOF"
-Created by...
+
+Brought to you by...
+
       ___           ___           ___           ___           ___
      /|  |         /\  \         /\__\         /\  \         /\  \
     |:|  |         \:\  \       /:/  /        /::\  \        \:\  \         ___
@@ -17,41 +19,32 @@ Created by...
     \:\__\        \::/  /       \::/  /       \:\__\        \::/  /         \:\__\
      \/__/         \/__/         \/__/         \/__/         \/__/           \/__/
 
-   https://kucrut.org
+https://kucrut.org
 
 EOF
 
 # Stolen from https://hub.docker.com/u/binhex/
 echo "[info] System information $(uname -a)"
 
-export PUID=$(echo "${PUID}" | sed -e 's/^[ \t]*//')
-if [[ ! -z "${PUID}" ]]; then
-    echo "[info] PUID defined as '${PUID}'"
-else
-    echo "[warn] PUID not defined (via -e PUID), defaulting to '99'"
-    export PUID="99"
-fi
-
-# set user nobody to specified user id (non unique)
-usermod -o -u "${PUID}" nobody &>/dev/null
-
-export PGID=$(echo "${PGID}" | sed -e 's/^[ \t]*//')
-if [[ ! -z "${PGID}" ]]; then
-    echo "[info] PGID defined as '${PGID}'"
-else
-    echo "[warn] PGID not defined (via -e PGID), defaulting to '100'"
-    export PGID="100"
-fi
-
-# set group nobody to specified group id (non unique)
-groupmod -o -g "${PGID}" nobody &>/dev/null
-
 mkdir -p /var/www/content/{uploads,upgrade}
 
-if [[ ! -f "/var/www/content/perms.txt" ]]; then
-    echo "Setting uploads & upgrade directories permissions..."
+# Set nobody's user ID.
+if [ ! -z "${OWNER_UID}" ]; then
+    echo "[info] OWNER_UID defined as '${OWNER_UID}'"
+    # set user nobody to specified user id (non unique)
+    usermod -o -u "${OWNER_UID}" nobody &>/dev/null
+fi
+
+# Set nobody's group ID.
+if [ ! -z "${OWNER_GID}" ]; then
+    echo "[info] OWNER_GID defined as '${OWNER_GID}'"
+    # set group nobody to specified group id (non unique)
+    groupmod -o -g "${OWNER_GID}" nobody &>/dev/null
+fi
+
+if [ ! -f "/var/www/content/perms.txt" ]; then
     chown -R nobody:nobody /var/www/content/{uploads,upgrade}
-    echo "Permission set to ${PUID}:${PGID}" > /var/www/content/perms.txt
+    echo "Permission set." > /var/www/content/perms.txt
 fi
 
 exec "$@"
