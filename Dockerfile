@@ -31,14 +31,21 @@ VOLUME /var/www/content
 WORKDIR /var/www/content
 RUN chown -R nobody.nobody /var/www
 
-# Install wp-cli
+# Volume for extra WordPress configs.
+RUN mkdir -p /var/www/wp-configs
+VOLUME /var/www/wp-configs
+
+# Install WP-CLI
 RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar \
     && chmod +x /usr/local/bin/wp
+
+# Configure WP-CLI
+COPY config/wordpress/wp-cli.yml /var/www/wp-configs/wp-cli.yml
+ENV WP_CLI_CONFIG_PATH=/var/www/wp-configs/wp-cli.yml
 
 # Download WordPress
 RUN wp core download \
     --allow-root \
-    --path=/var/www/wordpress \
     --version="${WP_VERSION}" \
     --force
 
@@ -47,10 +54,6 @@ VOLUME /var/www/wordpress
 
 # WP config
 COPY config/wordpress/wp-config.php /var/www
-
-# Volume for extra WordPress configs.
-RUN mkdir -p /var/www/wp-configs
-VOLUME /var/www/wp-configs
 
 # Volumes for logs
 VOLUME /var/log/nginx
