@@ -1,1 +1,5 @@
+sample/docker-compose.override.yml
 sample/data
+sample/log
+sample/env.*
+!sample/env.dev
