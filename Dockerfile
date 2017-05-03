@@ -3,7 +3,6 @@ LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
       Description="Lightweight WordPress container with Nginx 1.10 & PHP-FPM 7.1 based on Alpine Linux."
 
 ENV WP_VERSION 4.7.4
-ENV WP_CORE_DIR /usr/src/wordpress
 
 # Install packages from testing repo's
 RUN apk update && apk upgrade && apk add \
@@ -40,12 +39,12 @@ RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/build
 # Download WordPress
 RUN wp core download \
     --allow-root \
-    --path=${WP_CORE_DIR} \
+    --path=/usr/src/wordpress \
     --version="${WP_VERSION}" \
     --force
 
 # WP config
-COPY config/wordpress/wp-config.php ${WP_CORE_DIR}
+COPY config/wordpress/wp-config.php /usr/src
 
 # Volume for WP Core files, in case we want to use our local files.
 VOLUME /usr/src/wordpress

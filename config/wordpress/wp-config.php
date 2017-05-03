@@ -27,7 +27,7 @@ foreach ( $env_keys as $key ) {
 }
 
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+	define( 'ABSPATH', __DIR__ . '/wordpress/' );
 }
 
 define( 'WP_CONTENT_DIR', '/var/www/content' );
