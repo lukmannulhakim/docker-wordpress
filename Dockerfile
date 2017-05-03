@@ -47,6 +47,9 @@ RUN wp core download \
 # WP config
 COPY config/wordpress/wp-config.php ${WP_CORE_DIR}
 
+# Volume for WP Core files, in case we want to use our local files.
+VOLUME /usr/src/wordpress
+
 # Entrypoint to copy wp-content
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
