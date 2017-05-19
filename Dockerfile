@@ -2,7 +2,7 @@ FROM alpine:3.5
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
       Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux."
 
-ENV WP_VERSION 4.7.4
+ENV WP_VERSION 4.7.5
 
 # Install packages from testing repo's
 RUN apk update && apk upgrade && apk add \
