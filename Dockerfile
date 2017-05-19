@@ -2,8 +2,6 @@ FROM alpine:3.5
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
       Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux."
 
-ENV WP_VERSION 4.7.5
-
 # Install packages from testing repo's
 RUN apk update && apk upgrade && apk add \
     nginx supervisor curl bash shadow \
@@ -42,6 +40,8 @@ RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/build
 # Configure WP-CLI
 COPY config/wordpress/wp-cli.yml /var/www/wp-configs/wp-cli.yml
 ENV WP_CLI_CONFIG_PATH=/var/www/wp-configs/wp-cli.yml
+
+ENV WP_VERSION 4.7.5
 
 # Download WordPress
 RUN wp core download \
