@@ -55,10 +55,6 @@ VOLUME /var/www/wordpress
 # WP config
 COPY config/wordpress/wp-config.php /var/www
 
-# Volumes for logs
-VOLUME /var/log/nginx
-VOLUME /var/log/php7
-
 # Entrypoint to copy wp-content
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
