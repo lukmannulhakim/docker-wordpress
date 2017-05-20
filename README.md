@@ -1,6 +1,6 @@
 # WordPress Docker Container
 
-Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux.
+Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.1 on Alpine Linux.
 
 _WordPress version currently installed:_ **4.7.5**
 
@@ -33,3 +33,4 @@ docker run \
 
 ### Credits
 * https://github.com/TrafeX/docker-wordpress/
+* https://php-alpine.codecasts.rocks/

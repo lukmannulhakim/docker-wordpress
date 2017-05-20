@@ -2,8 +2,10 @@ FROM alpine:3.5
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
       Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux."
 
-# Install packages from testing repo's
-RUN apk update && apk upgrade && apk add \
+# Install packages
+ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+RUN echo "http://php.codecasts.rocks/7.1" >> /etc/apk/repositories && \
+    apk add --update \
     nginx supervisor curl bash shadow \
     php7 php7-fpm php7-mysqli php7-json php7-openssl php7-curl php7-zlib \
     php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype \
