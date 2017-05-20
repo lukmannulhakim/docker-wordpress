@@ -2,6 +2,9 @@ FROM kucrut/php.nginx
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
       Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux."
 
+# Configure nginx
+COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+
 ENV WP_VERSION=4.7.5 \
     WP_CLI_CONFIG_PATH=/var/www/wp-configs/wp-cli.yml
 
