@@ -63,4 +63,9 @@ if ( file_exists( WP_CONTENT_DIR . '/themes' ) ) {
 $GLOBALS['wp_theme_directories'][] = ABSPATH . 'wp-content/themes';
 $GLOBALS['wp_theme_directories'][] = ABSPATH . 'wp-content/themes';
 
+// SSL Support with Reverse Proxy
+if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === $_SERVER['HTTP_X_FORWARDED_PROTO'] ) {
+	$_SERVER['HTTPS'] = 'on';
+}
+
 require_once ABSPATH . 'wp-settings.php';
