@@ -11,7 +11,7 @@ ENV PAGER='busybox less'
 COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 ENV WP_VERSION=4.7.5 \
-    WP_CLI_CONFIG_PATH=/var/www/wp-configs/wp-cli.yml
+    WP_CLI_CONFIG_PATH=/wp-cli.yml
 
 # wp-content volume
 VOLUME /var/www/content
@@ -27,7 +27,7 @@ RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/build
     && chmod +x /usr/local/bin/wp
 
 # Configure WP-CLI
-COPY config/wordpress/wp-cli.yml /var/www/wp-configs/wp-cli.yml
+COPY config/wordpress/wp-cli.yml /wp-cli.yml
 
 # Download WordPress
 RUN wp core download \
