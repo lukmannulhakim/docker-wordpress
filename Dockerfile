@@ -2,6 +2,11 @@ FROM kucrut/php.nginx
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
       Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux."
 
+# Set env vars
+# This is needed for WP_CLI's --help argument to work.
+# Still needs to fix the funny characters though.
+ENV PAGER='busybox less'
+
 # Configure nginx
 COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
