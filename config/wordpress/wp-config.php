@@ -46,11 +46,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'WP_CONTENT_DIR', '/var/www/wp-content' );
-define( 'WP_CONTENT_URL', sprintf(
-	'%s://%s/wp-content',
-	empty( $_SERVER['HTTPS'] ) ? 'https' : 'http',
-	$_SERVER['HTTP_HOST']
-) );
 
 // Use built-in themes, stolen from Chassis.
 if ( empty( $GLOBALS['wp_theme_directories'] ) ) {
