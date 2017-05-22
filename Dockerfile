@@ -15,7 +15,6 @@ ENV WP_VERSION=4.7.5 \
 
 # wp-content volume
 VOLUME /var/www/wp-content
-WORKDIR /var/www/wp-content
 RUN chown -R nobody.nobody /var/www
 
 # Volume for extra WordPress configs.
@@ -37,6 +36,7 @@ RUN wp core download \
 
 # Volume for WP Core files, in case we want to use our local files.
 VOLUME /var/www/wordpress
+WORKDIR /var/www/wordpress
 
 # WP config
 COPY config/wordpress/wp-config.php /var/www
