@@ -28,22 +28,22 @@ echo "[info] System information $(uname -a)"
 
 mkdir -p /var/www/wp-content/{uploads,upgrade}
 
-# Set nobody's user ID.
+# Set nginx's user ID.
 if [ ! -z "${PUID}" ]; then
     echo "[info] PUID defined as '${PUID}'"
-    # set user nobody to specified user id (non unique)
-    usermod -o -u "${PUID}" nobody &>/dev/null
+    # set user nginx to specified user id (non unique)
+    usermod -o -u "${PUID}" nginx &>/dev/null
 fi
 
-# Set nobody's group ID.
+# Set nginx's group ID.
 if [ ! -z "${PGID}" ]; then
     echo "[info] PGID defined as '${PGID}'"
-    # set group nobody to specified group id (non unique)
-    groupmod -o -g "${PGID}" nobody &>/dev/null
+    # set group nginx to specified group id (non unique)
+    groupmod -o -g "${PGID}" nginx &>/dev/null
 fi
 
 if [ ! -f "/var/www/wp-content/perms.txt" ]; then
-    chown -R nobody:nobody /var/www/wp-content/{uploads,upgrade}
+    chown -R nginx:nginx /var/www/wp-content/{uploads,upgrade}
     echo "Permission set." > /var/www/wp-content/perms.txt
 fi
 
