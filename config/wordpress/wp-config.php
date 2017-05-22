@@ -42,6 +42,10 @@ if ( ! defined( 'FS_METHOD' ) ) {
 	define( 'FS_METHOD', 'direct' );
 }
 
+if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
+	define( 'DISALLOW_FILE_EDIT', true );
+}
+
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/wordpress/' );
 }
