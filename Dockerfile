@@ -14,8 +14,8 @@ ENV WP_VERSION=4.7.5 \
     WP_CLI_CONFIG_PATH=/wp-cli.yml
 
 # wp-content volume
-VOLUME /var/www/content
-WORKDIR /var/www/content
+VOLUME /var/www/wp-content
+WORKDIR /var/www/wp-content
 RUN chown -R nobody.nobody /var/www
 
 # Volume for extra WordPress configs.
