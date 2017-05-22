@@ -28,8 +28,6 @@ $env_keys = [
 	'DB_NAME',
 	'DB_USER',
 	'DB_PASSWORD',
-	// Misc.
-	'FS_METHOD',
 ];
 
 foreach ( $env_keys as $key ) {
