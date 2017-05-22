@@ -1,17 +1,14 @@
 <?php
 
 // Load local config.
-$wp_env = getenv( 'WP_ENV' );
-if ( ! empty( $wp_env ) ) {
-	$env_config_file = sprintf( '%s/wp-configs/%s.php', __DIR__, $wp_env );
-
-	if ( file_exists( $env_config_file ) ) {
-		require_once $env_config_file;
-	}
+$local_config_file = __DIR__ . '/wp-configs/local-config.php';
+if ( file_exists( $local_config_file ) ) {
+	require_once $local_config_file;
 }
 
 $table_prefix = getenv( 'TABLE_PREFIX' ) ?: 'wp_';
 
+// Get secrets from env vars.
 $env_keys = [
 	// Salt.
 	'AUTH_KEY',
