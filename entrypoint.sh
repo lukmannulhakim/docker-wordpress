@@ -29,17 +29,17 @@ echo "[info] System information $(uname -a)"
 mkdir -p /var/www/wp-content/{uploads,upgrade}
 
 # Set nobody's user ID.
-if [ ! -z "${OWNER_UID}" ]; then
-    echo "[info] OWNER_UID defined as '${OWNER_UID}'"
+if [ ! -z "${PUID}" ]; then
+    echo "[info] PUID defined as '${PUID}'"
     # set user nobody to specified user id (non unique)
-    usermod -o -u "${OWNER_UID}" nobody &>/dev/null
+    usermod -o -u "${PUID}" nobody &>/dev/null
 fi
 
 # Set nobody's group ID.
-if [ ! -z "${OWNER_GID}" ]; then
-    echo "[info] OWNER_GID defined as '${OWNER_GID}'"
+if [ ! -z "${PGID}" ]; then
+    echo "[info] PGID defined as '${PGID}'"
     # set group nobody to specified group id (non unique)
-    groupmod -o -g "${OWNER_GID}" nobody &>/dev/null
+    groupmod -o -g "${PGID}" nobody &>/dev/null
 fi
 
 if [ ! -f "/var/www/wp-content/perms.txt" ]; then
