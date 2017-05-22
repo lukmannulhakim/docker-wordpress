@@ -5,7 +5,7 @@ Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.1 on Alpine Linux.
 _WordPress version currently installed:_ **4.7.5**
 
 ## Usage
-See [docker-compose.yml](sample/) how to use it in your own environment.
+See [docker-compose.yml](sample/) on how to use it in your own environment.
 ```
 docker-compose up
 ```
@@ -18,7 +18,7 @@ docker run -d \
     -e MYSQL_DATABASE=wordpress \
     -e MYSQL_USER=wordpress \
     -e MYSQL_PASSWORD=wordpress \
-    mariadb:10.1
+    kucrut/mariadb
 docker run \
     --name=wordpress \
     --link wordpress_db:mysql \
@@ -27,7 +27,7 @@ docker run \
     -e DB_NAME=wordpress \
     -e DB_USER=wordpress \
     -e DB_PASSWORD=wordpress \
-    -v /some/local/path:/var/www/content \
+    -v /some/local/path:/var/www/wp-content \
     kucrut/wordpress
 ```
 

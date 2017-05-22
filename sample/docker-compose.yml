@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
     volumes:
-      - "./data/content:/var/www/content"
+      - "./data/content:/var/www/wp-content"
       - "./config/wordpress:/var/www/wp-configs"
       - "./log/nginx:/var/log/nginx"
       - "./log/php7:/var/log/php7"
