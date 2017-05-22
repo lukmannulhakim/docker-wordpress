@@ -26,7 +26,7 @@ EOF
 # Stolen from https://hub.docker.com/u/binhex/
 echo "[info] System information $(uname -a)"
 
-mkdir -p /var/www/content/{uploads,upgrade}
+mkdir -p /var/www/wp-content/{uploads,upgrade}
 
 # Set nobody's user ID.
 if [ ! -z "${OWNER_UID}" ]; then
@@ -42,9 +42,9 @@ if [ ! -z "${OWNER_GID}" ]; then
     groupmod -o -g "${OWNER_GID}" nobody &>/dev/null
 fi
 
-if [ ! -f "/var/www/content/perms.txt" ]; then
-    chown -R nobody:nobody /var/www/content/{uploads,upgrade}
-    echo "Permission set." > /var/www/content/perms.txt
+if [ ! -f "/var/www/wp-content/perms.txt" ]; then
+    chown -R nobody:nobody /var/www/wp-content/{uploads,upgrade}
+    echo "Permission set." > /var/www/wp-content/perms.txt
 fi
 
 exec "$@"
