@@ -45,9 +45,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/wordpress/' );
 }
 
-define( 'WP_CONTENT_DIR', '/var/www/content' );
+define( 'WP_CONTENT_DIR', '/var/www/wp-content' );
 define( 'WP_CONTENT_URL', sprintf(
-	'%s://%s/content',
+	'%s://%s/wp-content',
 	empty( $_SERVER['HTTPS'] ) ? 'https' : 'http',
 	$_SERVER['HTTP_HOST']
 ) );
