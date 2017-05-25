@@ -2,6 +2,13 @@ FROM kucrut/php.nginx
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
       Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux."
 
+# Install packages
+ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+RUN echo "http://php.codecasts.rocks/7.1" >> /etc/apk/repositories && \
+    apk add --update imagemagick ghostscript php7-imagick && \
+    rm -fr /var/cache/apk/*
+
+
 # Set env vars
 # This is needed for WP_CLI's --help argument to work.
 # Still needs to fix the funny characters though.
