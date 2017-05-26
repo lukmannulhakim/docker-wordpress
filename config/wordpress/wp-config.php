@@ -47,15 +47,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'WP_CONTENT_DIR', '/var/www/wp-content' );
 
-// Use built-in themes, stolen from Chassis.
+// Set custom themes dir.
 if ( empty( $GLOBALS['wp_theme_directories'] ) ) {
 	$GLOBALS['wp_theme_directories'] = [];
 }
+
 if ( file_exists( WP_CONTENT_DIR . '/themes' ) ) {
 	$GLOBALS['wp_theme_directories'][] = WP_CONTENT_DIR . '/themes';
 }
-$GLOBALS['wp_theme_directories'][] = ABSPATH . 'default-themes';
-$GLOBALS['wp_theme_directories'][] = ABSPATH . 'default-themes';
+
+// Use built-in themes, stolen from Chassis.
+if ( file_exists( ABSPATH . 'default-themes' ) ) {
+	$GLOBALS['wp_theme_directories'][] = ABSPATH . 'default-themes';
+	$GLOBALS['wp_theme_directories'][] = ABSPATH . 'default-themes';
+}
 
 // SSL Support with Reverse Proxy
 if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === $_SERVER['HTTP_X_FORWARDED_PROTO'] ) {
