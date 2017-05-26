@@ -54,8 +54,8 @@ if ( empty( $GLOBALS['wp_theme_directories'] ) ) {
 if ( file_exists( WP_CONTENT_DIR . '/themes' ) ) {
 	$GLOBALS['wp_theme_directories'][] = WP_CONTENT_DIR . '/themes';
 }
-$GLOBALS['wp_theme_directories'][] = ABSPATH . 'wp-content/themes';
-$GLOBALS['wp_theme_directories'][] = ABSPATH . 'wp-content/themes';
+$GLOBALS['wp_theme_directories'][] = ABSPATH . 'default-themes';
+$GLOBALS['wp_theme_directories'][] = ABSPATH . 'default-themes';
 
 // SSL Support with Reverse Proxy
 if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && 'https' === $_SERVER['HTTP_X_FORWARDED_PROTO'] ) {
