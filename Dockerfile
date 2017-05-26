@@ -5,7 +5,7 @@ LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
 # Install packages
 ADD https://php.codecasts.rocks/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 RUN echo "http://php.codecasts.rocks/7.1" >> /etc/apk/repositories && \
-    apk add --update imagemagick ghostscript php7-imagick && \
+    apk add --update mariadb-client imagemagick ghostscript php7-imagick && \
     rm -fr /var/cache/apk/*
 
 
