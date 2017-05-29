@@ -13,15 +13,14 @@ COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 RUN mkdir -p /var/www/wp-configs
 VOLUME /var/www/wp-configs
 
-# WP config
-COPY config/wordpress/wp-config.php /var/www
+# WP & WP-CLI configs
+COPY config/wordpress/* /var/www/
 
 # Configure WP-CLI
 # PAGER is needed for WP-CLI's --help argument to work.
 # Still needs to fix the funny characters though.
 ENV PAGER='busybox less' \
     WP_CLI_CONFIG_PATH=/var/www/wp-cli.yml
-COPY config/wordpress/wp-cli.yml /var/www/wp-cli.yml
 
 # Install WP-CLI
 RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar && \
