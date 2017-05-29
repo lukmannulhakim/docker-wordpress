@@ -29,7 +29,6 @@ RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/build
 # Download WordPress
 RUN WP_VERSION=4.7.5 && \
     wp core download --allow-root --version="${WP_VERSION}" --force && \
-    rm -rf /var/www/wordpress/default-themes && \
     mv /var/www/wordpress/wp-content/themes /var/www/wordpress/default-themes
 
 # Volume for wp-content
