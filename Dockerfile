@@ -23,7 +23,8 @@ ENV PAGER='busybox less' \
     WP_CLI_CONFIG_PATH=/var/www/wp-cli.yml
 
 # Install WP-CLI
-RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar && \
+RUN WP_CLI_VERSION=1.1.0 && \
+    curl -o /usr/local/bin/wp -SL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar" && \
     chmod +x /usr/local/bin/wp
 
 # Download WordPress
