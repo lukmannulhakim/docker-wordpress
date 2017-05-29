@@ -11,7 +11,6 @@ COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 # wp-content volume
 VOLUME /var/www/wp-content
-RUN chown -R nobody.nobody /var/www
 
 # Volume for extra WordPress configs.
 RUN mkdir -p /var/www/wp-configs
