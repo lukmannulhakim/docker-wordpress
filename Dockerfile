@@ -6,15 +6,8 @@ LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
 RUN apk add --update mariadb-client imagemagick ghostscript php7-imagick && \
     rm -fr /var/cache/apk/*
 
-# Set env vars
-# This is needed for WP_CLI's --help argument to work.
-# Still needs to fix the funny characters though.
-ENV PAGER='busybox less'
-
 # Configure nginx
 COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
-
-ENV WP_CLI_CONFIG_PATH=/wp-cli.yml
 
 # wp-content volume
 VOLUME /var/www/wp-content
@@ -27,12 +20,16 @@ VOLUME /var/www/wp-configs
 # WP config
 COPY config/wordpress/wp-config.php /var/www
 
+# Configure WP-CLI
+# PAGER is needed for WP-CLI's --help argument to work.
+# Still needs to fix the funny characters though.
+ENV PAGER='busybox less' \
+    WP_CLI_CONFIG_PATH=/var/www/wp-cli.yml
+COPY config/wordpress/wp-cli.yml /var/www/wp-cli.yml
+
 # Install WP-CLI
 RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar && \
     chmod +x /usr/local/bin/wp
-
-# Configure WP-CLI
-COPY config/wordpress/wp-cli.yml /wp-cli.yml
 
 # Download WordPress
 RUN WP_VERSION=4.7.5 && \
