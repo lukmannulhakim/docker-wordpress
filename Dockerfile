@@ -9,9 +9,6 @@ RUN apk add --update mariadb-client imagemagick ghostscript php7-imagick && \
 # Configure nginx
 COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
-# wp-content volume
-VOLUME /var/www/wp-content
-
 # Volume for extra WordPress configs.
 RUN mkdir -p /var/www/wp-configs
 VOLUME /var/www/wp-configs
@@ -35,6 +32,9 @@ RUN WP_VERSION=4.7.5 && \
     wp core download --allow-root --version="${WP_VERSION}" --force && \
     rm -rf /var/www/wordpress/default-themes && \
     mv /var/www/wordpress/wp-content/themes /var/www/wordpress/default-themes
+
+# Volume for wp-content
+VOLUME /var/www/wp-content
 
 # Volume for WP Core files, in case we want to use our local files.
 VOLUME /var/www/wordpress
