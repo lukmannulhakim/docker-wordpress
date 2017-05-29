@@ -14,8 +14,7 @@ ENV PAGER='busybox less'
 # Configure nginx
 COPY config/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
-ENV WP_VERSION=4.7.5 \
-    WP_CLI_CONFIG_PATH=/wp-cli.yml
+ENV WP_CLI_CONFIG_PATH=/wp-cli.yml
 
 # wp-content volume
 VOLUME /var/www/wp-content
@@ -36,7 +35,8 @@ RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/build
 COPY config/wordpress/wp-cli.yml /wp-cli.yml
 
 # Download WordPress
-RUN wp core download --allow-root --version="${WP_VERSION}" --force && \
+RUN WP_VERSION=4.7.5 && \
+    wp core download --allow-root --version="${WP_VERSION}" --force && \
     rm -rf /var/www/wordpress/default-themes && \
     mv /var/www/wordpress/wp-content/themes /var/www/wordpress/default-themes
 
