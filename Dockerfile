@@ -29,8 +29,8 @@ VOLUME /var/www/wp-configs
 COPY config/wordpress/wp-config.php /var/www
 
 # Install WP-CLI
-RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar \
-    && chmod +x /usr/local/bin/wp
+RUN curl -o /usr/local/bin/wp -SL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli-nightly.phar && \
+    chmod +x /usr/local/bin/wp
 
 # Configure WP-CLI
 COPY config/wordpress/wp-cli.yml /wp-cli.yml
