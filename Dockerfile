@@ -23,7 +23,7 @@ ENV PAGER='busybox less' \
     WP_CLI_CONFIG_PATH=/var/www/wp-cli.yml
 
 # Install WP-CLI
-RUN WP_CLI_VERSION=1.2.0 && \
+RUN WP_CLI_VERSION=1.2.1 && \
     curl -o /usr/local/bin/wp -SL "https://github.com/wp-cli/wp-cli/releases/download/v${WP_CLI_VERSION}/wp-cli-${WP_CLI_VERSION}.phar" && \
     chmod +x /usr/local/bin/wp
 
