@@ -39,7 +39,7 @@ function is_db_up() {
 # Stolen from https://hub.docker.com/u/binhex/
 echo "[info] System information $(uname -a)"
 
-mkdir -p /var/www/wp-content/{uploads,upgrade}
+mkdir -p /var/www/wp-content/{uploads,upgrade,languages}
 
 # Set nginx's user ID.
 if [ ! -z "${PUID}" ]; then
@@ -56,7 +56,7 @@ if [ ! -z "${PGID}" ]; then
 fi
 
 if [ ! -f "/var/www/wp-content/perms.txt" ]; then
-    chown -R nginx:nginx /var/www/wp-content/{uploads,upgrade}
+    chown -R nginx:nginx /var/www/wp-content/{uploads,upgrade,languages}
     echo "Permission set." > /var/www/wp-content/perms.txt
 fi
 
