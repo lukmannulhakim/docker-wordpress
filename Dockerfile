@@ -1,6 +1,6 @@
 FROM kucrut/php.nginx
 LABEL Maintainer="Dzikri Aziz <kvcrvt@gmail.com>" \
-      Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.0 on Alpine Linux."
+      Description="Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.1 on Alpine Linux."
 
 # Install packages
 RUN apk add --update mariadb-client imagemagick ghostscript php7-imagick && \
