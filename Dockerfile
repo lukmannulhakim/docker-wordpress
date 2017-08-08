@@ -28,7 +28,7 @@ RUN WP_CLI_VERSION=1.2.1 && \
     chmod +x /usr/local/bin/wp
 
 # Download WordPress
-RUN WP_VERSION=4.8 && \
+RUN WP_VERSION=4.8.1 && \
     wp core download --allow-root --version="${WP_VERSION}" --force && \
     mv /var/www/wordpress/wp-content/themes /var/www/wordpress/default-themes
 
