@@ -2,7 +2,7 @@
 
 Minimalist WordPress container with NGINX 1.10 & PHP-FPM 7.1 on Alpine Linux.
 
-_WordPress version currently installed:_ **4.9**
+_WordPress version currently installed:_ **4.9.1**
 
 ## Usage
 See [docker-compose.yml](sample/) on how to use it in your own environment.
